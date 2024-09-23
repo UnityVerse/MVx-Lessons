@@ -39,6 +39,7 @@ namespace SampleGame
 
             _currencyBank.Spend(product.Price);
             this.OnProductBought?.Invoke(product);
+
             Debug.Log($"<color=green>Product {product.Title} successfully purchased!</color>");
             return true;
         }

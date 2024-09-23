@@ -13,5 +13,13 @@ namespace SampleGame
         [Inject]
         [ShowInInspector, HideInEditorMode]
         private ProductBuyer productBuyer;
+        
+        [Inject]
+        [ShowInInspector, HideInEditorMode]
+        private ProductPresenter presenter;
+        
+        [Inject]
+        [ShowInInspector, HideInEditorMode]
+        private ProductShower productShower;
     }
 }

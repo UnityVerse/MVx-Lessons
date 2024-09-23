@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Product (Boots)
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 345cfbcc2796f458eba0947ea191ebf0, type: 3}
-  title: Simple Sword
-  description: Increases the damage of the hero by 25%
+  title: Boots
+  description: Increases the speed of the hero by 25%
   price:
   - type: 0
     amount: 200
+  - type: 1
+    amount: 100
+  - type: 2
+    amount: 444
