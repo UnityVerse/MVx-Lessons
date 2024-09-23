@@ -6,7 +6,7 @@ namespace SampleGame
 {
     public sealed class ProductBuyer
     {
-        public event Action<Product> OnProductBought; 
+        public event Action<Product> OnProductBought;
 
         private readonly CurrencyBank _currencyBank;
 
@@ -14,17 +14,24 @@ namespace SampleGame
         {
             _currencyBank = bank;
         }
-        
+
         [Button]
         public bool CanBuy(Product product)
         {
-            return _currencyBank.IsEnough(product.Price);
+            return product == null
+                ? throw new ArgumentNullException(nameof(product))
+                : _currencyBank.IsEnough(product.Price);
         }
 
         [Button]
         public bool Buy(Product product)
         {
-            if (!this.CanBuy(product))
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+
+            if (!_currencyBank.IsEnough(product.Price))
             {
                 Debug.LogWarning($"<color=red>Not enough money for product {product.Title}!</color>");
                 return false;

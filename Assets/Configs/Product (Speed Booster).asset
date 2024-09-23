@@ -19,6 +19,8 @@ MonoBehaviour:
   - type: 0
     amount: 5
   - type: 1
-    amount: 10
+    amount: 44
+  - type: 2
+    amount: 444
   - type: 3
-    amount: 3
+    amount: 4543
