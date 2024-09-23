@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,22 +10,23 @@ namespace SampleGame
     )]
     public sealed class Product : ScriptableObject
     {
+        public Sprite Icon => this.icon;
+        public string Title => this.title;
+        public string Description => this.description;
+        public IReadOnlyList<CurrencyData> Price => this.price;
+        
         [PreviewField]
         [SerializeField]
-        public Sprite icon;
+        private Sprite icon;
 
         [SerializeField]
-        public string title;
+        private string title;
 
         [TextArea]
         [SerializeField]
-        public string description;
+        private string description;
         
-        // [Space]
-        // [SerializeField]
-        // public int price;
-
         [SerializeField]
-        public CurrencyData[] price;
+        private CurrencyData[] price;
     }
 }

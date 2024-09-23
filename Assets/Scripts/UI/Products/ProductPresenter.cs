@@ -15,13 +15,13 @@ namespace SampleGame
         public event Action<bool> OnBuyButtonInteractible;
 
         [ShowInInspector]
-        public string Title => _product != null ? _product.title : default;
+        public string Title => _product != null ? _product.Title : default;
 
         [ShowInInspector]
-        public string Description => _product != null ? _product.description : default;
+        public string Description => _product != null ? _product.Description : default;
 
         [ShowInInspector]
-        public Sprite Icon => _product != null ? _product.icon : default;
+        public Sprite Icon => _product != null ? _product.Icon : default;
 
         public IReadOnlyList<IPriceElement> PriceElements => this.priceElements;
 
@@ -69,13 +69,13 @@ namespace SampleGame
                 return;
             }
 
-            CurrencyData[] price = product.price;
+            IReadOnlyList<CurrencyData> price = product.Price;
             if (price == null)
             {
                 return;
             }
             
-            for (int i = 0, count = price.Length; i < count; i++)
+            for (int i = 0, count = price.Count; i < count; i++)
             {
                 this.priceElements.Add(new PriceElement(this, i));
             }
@@ -122,7 +122,7 @@ namespace SampleGame
             public string Price => currency.amount.ToString();
             public Sprite Icon => _presenter._currencyBank.GetCell(currency.type).Icon;
 
-            private CurrencyData currency => _presenter._product.price[_priceIndex];
+            private CurrencyData currency => _presenter._product.Price[_priceIndex];
 
             private readonly ProductPresenter _presenter;
             private readonly int _priceIndex;

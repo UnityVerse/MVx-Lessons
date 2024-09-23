@@ -31,7 +31,7 @@ namespace SampleGame
 
         public void UnspawnItem(T item)
         {
-            if (this.items.Remove(item))
+            if (item != null && this.items.Remove(item))
             {
                 item.gameObject.SetActive(false);
                 this.freeList.Enqueue(item);

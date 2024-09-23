@@ -21,11 +21,10 @@ namespace SampleGame
             return _cells[type];
         }
 
-        public bool IsEnough(in CurrencyData[] range)
+        public bool IsEnough(IEnumerable<CurrencyData> range)
         {
-            for (int i = 0, count = range.Length; i < count; i++)
+            foreach (CurrencyData currency in range)
             {
-                CurrencyData currency = range[i];
                 if (!_cells.TryGetValue(currency.type, out CurrencyCell cell))
                 {
                     throw new ArgumentException($"Currency type {currency.type} is not found!");
@@ -36,24 +35,23 @@ namespace SampleGame
                     return false;
                 }
             }
-            
+
             return true;
         }
 
-        public bool Spend(in CurrencyData[] range)
+        public bool Spend(IEnumerable<CurrencyData> range)
         {
             if (!this.IsEnough(range))
             {
                 return false;
             }
-            
-            for (int i = 0, count = range.Length; i < count; i++)
+
+            foreach (CurrencyData currency in range)
             {
-                CurrencyData currency = range[i];
                 CurrencyCell cell = _cells[currency.type];
                 cell.Spend(currency.amount);
             }
-            
+
             return true;
         }
 

@@ -18,7 +18,7 @@ namespace SampleGame
         [Button]
         public bool CanBuy(Product product)
         {
-            return _currencyBank.IsEnough(product.price);
+            return _currencyBank.IsEnough(product.Price);
         }
 
         [Button]
@@ -26,13 +26,13 @@ namespace SampleGame
         {
             if (!this.CanBuy(product))
             {
-                Debug.LogWarning($"<color=red>Not enough money for product {product.title}!</color>");
+                Debug.LogWarning($"<color=red>Not enough money for product {product.Title}!</color>");
                 return false;
             }
 
-            _currencyBank.Spend(product.price);
+            _currencyBank.Spend(product.Price);
             this.OnProductBought?.Invoke(product);
-            Debug.Log($"<color=green>Product {product.title} successfully purchased!</color>");
+            Debug.Log($"<color=green>Product {product.Title} successfully purchased!</color>");
             return true;
         }
     }
