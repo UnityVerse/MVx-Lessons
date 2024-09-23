@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 4260235782546921559}
   - component: {fileID: 5064093238124088825}
   - component: {fileID: 5140363172729414140}
+  - component: {fileID: 3530093963215346037}
   m_Layer: 5
   m_Name: CurrencyView
   m_TagString: Untagged
@@ -244,7 +245,7 @@ RectTransform:
   - {fileID: 30313820055116178}
   - {fileID: 1371070628233419285}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -289,3 +290,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.7
+--- !u!114 &3530093963215346037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8433658012254572446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c198ae1e124e5c831ce19fdd34c1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 6031504200667189687}
+  icon: {fileID: 7180895323573019895}
+  animationDuration: 0.9
+  spendColor: {r: 0.6886792, g: 0, b: 0, a: 1}
+  earnColor: {r: 0, g: 0.745283, b: 0.08399214, a: 1}

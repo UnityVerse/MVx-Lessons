@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // ReSharper disable FieldCanBeMadeReadOnly.Local
 
@@ -13,6 +14,9 @@ namespace SampleGame
         [SerializeField]
         private TMP_Text moneyText;
 
+        [SerializeField]
+        private Image icon;
+        
         [SerializeField]
         private float animationDuration = 1.0f;
 
@@ -25,20 +29,34 @@ namespace SampleGame
         private Coroutine _animationCoroutine;
         private List<Sequence> _animationSequences = new();
 
-        public void Setup(string money)
+        public void SetIcon(Sprite icon)
+        {
+            this.icon.sprite = icon;
+        }
+        
+        public void SetupCurrency(string money)
         {
             this.StopAnimations();
             this.moneyText.text = money;
         }
         
-        public void SetCurrencyAsChanged(string money)
+        public void ChangeCurrency(string money)
         {
             this.StopAnimations();
             this.moneyText.text = money;
             this.BounceAnimation();
         }
 
-        public void SetCurrencyAsRemoved(string money)
+        public void AddCurrency(int startMoney, int range, string format = "{0}")
+        {
+            this.StopAnimations();
+
+            _animationCoroutine = this.StartCoroutine(this.AddMoneyAnimation(startMoney, range, format));
+            this.BounceAnimation();
+            this.ColorAnimation(this.earnColor, this.animationDuration - 0.3f);
+        }
+
+        public void RemoveCurrency(string money)
         {
             this.StopAnimations();
 
@@ -46,15 +64,6 @@ namespace SampleGame
 
             this.BounceAnimation();
             this.ColorAnimation(this.spendColor);
-        }
-
-        public void SetCurrencyAsAdded(int startMoney, int range, string format = "{0}")
-        {
-            this.StopAnimations();
-
-            _animationCoroutine = this.StartCoroutine(this.AddMoneyAnimation(startMoney, range, format));
-            this.BounceAnimation();
-            this.ColorAnimation(this.earnColor, this.animationDuration - 0.3f);
         }
 
         private void ColorAnimation(Color color, float interval = 0.5f)
@@ -109,7 +118,5 @@ namespace SampleGame
 
             this.moneyText.text = string.Format(format, startMoney + range);
         }
-
-   
     }
 }

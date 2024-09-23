@@ -8,17 +8,17 @@ namespace SampleGame
     {
         public event Action<Product> OnProductBought; 
 
-        private readonly MoneyStorage moneyStorage;
+        private readonly CurrencyCell _moneyStorage;
 
-        public ProductBuyer(MoneyStorage moneyStorage)
+        public ProductBuyer(CurrencyBank bank)
         {
-            this.moneyStorage = moneyStorage;
+            _moneyStorage = bank.GetCell(CurrencyType.MONEY);
         }
         
         [Button]
         public bool CanBuy(Product product)
         {
-            return this.moneyStorage.Money >= product.price;
+            return _moneyStorage.Amount >= product.price;
         }
 
         [Button]
@@ -30,7 +30,7 @@ namespace SampleGame
                 return false;
             }
 
-            this.moneyStorage.SpendMoney(product.price);
+            _moneyStorage.Spend(product.price);
             this.OnProductBought?.Invoke(product);
             Debug.Log($"<color=green>Product {product.title} successfully purchased!</color>");
             return true;

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,52 +22,57 @@ namespace SampleGame
         
         [SerializeField]
         private Button buyButton;
-
-        [Inject]
-        private ProductBuyer productBuyer;
-
-        [Inject]
-        private MoneyStorage moneyStorage;
-
-        [SerializeField]
-        private Product product;
-
-        public void SetProduct(Product product)
-        {
-            this.product = product;
-        }
+        
+        private IProductPresenter _presenter;
+        //
+        // [Inject]
+        // public void Construct(IProductPresenter presenter)
+        // {
+        //     _presenter = presenter;
+        // }
 
         [Sirenix.OdinInspector.Button]
         public void Show()
         {
-            this.title.text = product.title;
-            this.description.text = product.description;
-            this.icon.sprite = product.icon;
-            this.price.text = product.price.ToString();
+            this.title.text = _presenter.Title;
+            this.description.text = _presenter.Description;
+            this.icon.sprite = _presenter.Icon;
+            this.price.text = _presenter.Price;
             
-            this.buyButton.interactable = this.productBuyer.CanBuy(product);
-            this.buyButton.onClick.AddListener(this.OnBuyClicked);
+            this.buyButton.interactable = _presenter.IsBuyButtonInteractible;
+            this.buyButton.onClick.AddListener(_presenter.OnBuyClick);
 
-            this.moneyStorage.OnStateChanged += this.OnMoneyChanged;
+            _presenter.OnBuyButtonInteractible += this.OnBuyButtonInteractible;
+
             this.gameObject.SetActive(true);
         }
 
         [Sirenix.OdinInspector.Button]
         public void Hide()
         {
-            this.buyButton.onClick.RemoveListener(this.OnBuyClicked);
-            this.moneyStorage.OnStateChanged -= this.OnMoneyChanged;
+            _presenter.OnBuyButtonInteractible -= this.OnBuyButtonInteractible;
+
+            this.buyButton.onClick.RemoveListener(_presenter.OnBuyClick);
             this.gameObject.SetActive(false);
         }
-        
-        private void OnBuyClicked()
-        {
-            this.productBuyer.Buy(product);
-        }
 
-        private void OnMoneyChanged(int _)
+        private void OnBuyButtonInteractible(bool interactible)
         {
-            this.buyButton.interactable = this.productBuyer.CanBuy(product);
+            this.buyButton.interactable = interactible;
         }
+    }
+
+    public interface IProductPresenter
+    {
+        event Action<bool> OnBuyButtonInteractible;
+        
+        string Title { get; }
+        string Description { get; }
+        Sprite Icon { get; }
+        string Price { get; }
+        
+        bool IsBuyButtonInteractible { get; }
+        
+        void OnBuyClick();
     }
 }

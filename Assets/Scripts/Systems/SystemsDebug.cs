@@ -8,11 +8,7 @@ namespace SampleGame
     {
         [Inject]
         [ShowInInspector, HideInEditorMode]
-        private MoneyStorage moneyStorage;
-        
-        [Inject]
-        [ShowInInspector, HideInEditorMode]
-        private GemsStorage gemsStorage;
+        private CurrencyBank currencyBank;
 
         [Inject]
         [ShowInInspector, HideInEditorMode]
