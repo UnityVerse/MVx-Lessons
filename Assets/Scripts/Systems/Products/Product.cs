@@ -20,8 +20,11 @@ namespace SampleGame
         [SerializeField]
         public string description;
         
-        [Space]
+        // [Space]
+        // [SerializeField]
+        // public int price;
+
         [SerializeField]
-        public int price;
+        public CurrencyData[] price;
     }
 }

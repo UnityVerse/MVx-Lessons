@@ -1,6 +1,6 @@
 namespace SampleGame
 {
-    public sealed class CurrencyPresenter
+    public sealed class CurrencyCellPresenter
     {
         public CurrencyView View => this.view;
         public CurrencyCell Cell => this.cell;
@@ -8,7 +8,7 @@ namespace SampleGame
         private readonly CurrencyCell cell;
         private readonly CurrencyView view;
 
-        public CurrencyPresenter(CurrencyCell cell, CurrencyView view)
+        public CurrencyCellPresenter(CurrencyCell cell, CurrencyView view)
         {
             this.cell = cell;
             this.view = view;

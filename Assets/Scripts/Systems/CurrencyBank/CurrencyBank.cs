@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,45 @@ namespace SampleGame
             _cells = cells.ToDictionary(it => it.Type);
         }
 
-        public CurrencyCell GetCell(CurrencyType type)
+        public CurrencyCell GetCell(in CurrencyType type)
         {
             return _cells[type];
+        }
+
+        public bool IsEnough(in CurrencyData[] range)
+        {
+            for (int i = 0, count = range.Length; i < count; i++)
+            {
+                CurrencyData currency = range[i];
+                if (!_cells.TryGetValue(currency.type, out CurrencyCell cell))
+                {
+                    throw new ArgumentException($"Currency type {currency.type} is not found!");
+                }
+                
+                if (!cell.IsEnough(currency.amount))
+                {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        public bool Spend(in CurrencyData[] range)
+        {
+            if (!this.IsEnough(range))
+            {
+                return false;
+            }
+            
+            for (int i = 0, count = range.Length; i < count; i++)
+            {
+                CurrencyData currency = range[i];
+                CurrencyCell cell = _cells[currency.type];
+                cell.Spend(currency.amount);
+            }
+            
+            return true;
         }
 
         public IEnumerator<CurrencyCell> GetEnumerator()

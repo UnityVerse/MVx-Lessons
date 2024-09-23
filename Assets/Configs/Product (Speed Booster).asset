@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c572248d8b2d4b04860a61977d717f6b, type: 3}
-  m_Name: Product (Simple Sword)
+  m_Name: Product (Speed Booster)
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: bde8c09b493bc465a98a7db64653e784, type: 3}
-  title: Simple Sword
-  description: Increases the damage of the hero by 25%
+  icon: {fileID: 21300000, guid: 017ff9854ebc446f0a95269efca9f6e2, type: 3}
+  title: Speed Booster
+  description: Increases speed of the hero by 25%
   price:
-  - type: 2
-    amount: 10
-  - type: 3
-    amount: 10
   - type: 0
-    amount: 10
+    amount: 5
   - type: 1
     amount: 10
+  - type: 3
+    amount: 3

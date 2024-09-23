@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static SampleGame.IProductPresenter;
 
 namespace SampleGame
 {
@@ -17,10 +19,10 @@ namespace SampleGame
         private Image icon;
 
         [SerializeField]
-        private TMP_Text price;
-        
-        [SerializeField]
         private Button buyButton;
+
+        [SerializeField]
+        private PriceListView priceListView;
         
         private IProductPresenter _presenter;
         
@@ -57,8 +59,22 @@ namespace SampleGame
             this.title.text = _presenter.Title;
             this.description.text = _presenter.Description;
             this.icon.sprite = _presenter.Icon;
-            this.price.text = _presenter.Price;
             this.buyButton.interactable = _presenter.IsBuyButtonInteractible;
+            this.UpdatePrice();
+        }
+
+        private void UpdatePrice()
+        {
+            this.priceListView.Clear();
+            
+            IReadOnlyList<IPriceElement> presenters = _presenter.PriceElements;
+            for (int i = 0, count = presenters.Count; i < count; i++)
+            {
+                IPriceElement presenter = presenters[i];
+                PriceView view = this.priceListView.SpawnItem();
+                view.SetAmount(presenter.Price);
+                view.SetIcon(presenter.Icon);
+            }
         }
 
         private void OnBuyButtonInteractible(bool interactible)

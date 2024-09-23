@@ -4,7 +4,7 @@ namespace SampleGame
     {
         MONEY = 0,
         GEMS = 1,
-        STARS = 2,
-        LIKES = 3
+        WOOD = 2,
+        STONE = 3
     }
 }

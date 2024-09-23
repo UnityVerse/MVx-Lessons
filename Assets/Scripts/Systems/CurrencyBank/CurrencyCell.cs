@@ -75,7 +75,7 @@ namespace SampleGame
             }
         }
 
-        public bool Exists(int range)
+        public bool IsEnough(int range)
         {
             return _amount >= range;
         }

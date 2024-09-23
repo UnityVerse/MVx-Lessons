@@ -10,8 +10,13 @@ namespace SampleGame
 
         public override void InstallBindings()
         {
-            ProductInstaller.Install(this.Container);
-            CurrencyInstaller.Install(this.Container, this.cells);
+            this.Container
+                .Bind<CurrencyBank>()
+                .AsSingle()
+                .WithArguments(this.cells)
+                .NonLazy();
+            
+            this.Container.Bind<ProductBuyer>().AsSingle();
         }
     }
 }

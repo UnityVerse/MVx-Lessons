@@ -9,7 +9,7 @@ namespace SampleGame
         private readonly CurrencyBank bank;
         private readonly CurrencyListView listView;
 
-        private readonly List<CurrencyPresenter> presenters = new();
+        private readonly List<CurrencyCellPresenter> presenters = new();
         
         public CurrencyBankPresenter(CurrencyBank bank, CurrencyListView listView)
         {
@@ -22,14 +22,14 @@ namespace SampleGame
             foreach (CurrencyCell cell in this.bank)
             {
                 CurrencyView cellView = this.listView.SpawnItem();
-                CurrencyPresenter itemPresenter = new CurrencyPresenter(cell, cellView);
+                CurrencyCellPresenter itemPresenter = new CurrencyCellPresenter(cell, cellView);
                 this.presenters.Add(itemPresenter);
             }
         }
 
         public void Dispose()
         {
-            foreach (CurrencyPresenter presenter in this.presenters)
+            foreach (CurrencyCellPresenter presenter in this.presenters)
             {
                 presenter.Dispose();
                 this.listView.UnspawnItem(presenter.View);
