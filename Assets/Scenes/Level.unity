@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyListView: {fileID: 1693685557}
+  productPopup: {fileID: 131890526150620686}
   initialProduct: {fileID: 11400000, guid: cda3b27492e83468bb5036ae78cac326, type: 2}
 --- !u!1 &906546670
 GameObject:
@@ -718,6 +719,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfc4c5c4119f466c9cb4594c6c503f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &131890526150620686 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5356291396043998258, guid: 3085788bf76654b988eeb5718bf12982, type: 3}
+  m_PrefabInstance: {fileID: 4074919324350314321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e2047dadc84c9ebd0a40cc9b9b82e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &162221786612101649

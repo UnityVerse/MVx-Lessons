@@ -17,5 +17,9 @@ namespace SampleGame
         [Inject]
         [ShowInInspector, HideInEditorMode]
         private ProductPresenter productPresenter;
+        
+        [Inject]
+        [ShowInInspector, HideInEditorMode]
+        private ProductShower productShower;
     }
 }
