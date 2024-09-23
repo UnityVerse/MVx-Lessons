@@ -17,4 +17,4 @@ MonoBehaviour:
   description: Increases the damage of the hero by 25%
   price:
   - type: 0
-    amount: 100
+    amount: 200

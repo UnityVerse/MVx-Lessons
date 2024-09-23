@@ -17,10 +17,4 @@ MonoBehaviour:
   description: Increases speed of the hero by 25%
   price:
   - type: 0
-    amount: 5
-  - type: 1
-    amount: 44
-  - type: 2
-    amount: 444
-  - type: 3
-    amount: 4543
+    amount: 125
