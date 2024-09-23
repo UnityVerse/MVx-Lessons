@@ -4,7 +4,7 @@ using Zenject;
 
 namespace SampleGame
 {
-    public sealed class SystemsDebug : MonoBehaviour
+    public sealed class SceneDebug : MonoBehaviour
     {
         [Inject]
         [ShowInInspector, HideInEditorMode]
@@ -13,5 +13,9 @@ namespace SampleGame
         [Inject]
         [ShowInInspector, HideInEditorMode]
         private ProductBuyer productBuyer;
+
+        [Inject]
+        [ShowInInspector, HideInEditorMode]
+        private ProductPresenter productPresenter;
     }
 }

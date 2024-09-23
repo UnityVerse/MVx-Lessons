@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,12 +23,12 @@ namespace SampleGame
         private Button buyButton;
         
         private IProductPresenter _presenter;
-        //
-        // [Inject]
-        // public void Construct(IProductPresenter presenter)
-        // {
-        //     _presenter = presenter;
-        // }
+        
+        [Inject]
+        public void Construct(IProductPresenter presenter)
+        {
+            _presenter = presenter;
+        }
 
         [Sirenix.OdinInspector.Button]
         public void Show()
@@ -60,19 +59,5 @@ namespace SampleGame
         {
             this.buyButton.interactable = interactible;
         }
-    }
-
-    public interface IProductPresenter
-    {
-        event Action<bool> OnBuyButtonInteractible;
-        
-        string Title { get; }
-        string Description { get; }
-        Sprite Icon { get; }
-        string Price { get; }
-        
-        bool IsBuyButtonInteractible { get; }
-        
-        void OnBuyClick();
     }
 }

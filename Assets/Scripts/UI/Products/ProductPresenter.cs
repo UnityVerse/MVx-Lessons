@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -6,37 +7,64 @@ namespace SampleGame
 {
     public sealed class ProductPresenter : IProductPresenter, IInitializable, IDisposable
     {
+        public event Action OnStateChanged;
         public event Action<bool> OnBuyButtonInteractible;
 
+        [ShowInInspector]
         public string Title => _product != null ? _product.title : default;
+
+        [ShowInInspector]
         public string Description => _product != null ? _product.description : default;
+
+        [ShowInInspector]
         public Sprite Icon => _product != null ? _product.icon : default;
+
+        [ShowInInspector]
         public string Price => _product != null ? _product.price.ToString() : default;
-        
+
+        [ShowInInspector]
         public bool IsBuyButtonInteractible => this.buyButtonInteractible;
-        
-        private readonly CurrencyCell _currencyBank;
+
+        private readonly CurrencyCell _moneyStorage;
         private readonly ProductBuyer _productBuyer;
+        
+        [ShowInInspector]
         private Product _product;
 
         private bool buyButtonInteractible;
-        
+
         public ProductPresenter(CurrencyBank currencyBank, ProductBuyer productBuyer, Product product = default)
         {
-            _currencyBank = currencyBank.GetCell(CurrencyType.MONEY);
+            _moneyStorage = currencyBank.GetCell(CurrencyType.MONEY);
             _productBuyer = productBuyer;
             _product = product;
         }
-        
+
+        [Button]
+        public void SetProduct(Product product)
+        {
+            if (product != _product)
+            {
+                _product = product;
+                this.buyButtonInteractible = this.CanBuy();
+                this.OnStateChanged?.Invoke();    
+            }
+        }
+
         public void Initialize()
         {
             this.buyButtonInteractible = this.CanBuy();
-            _currencyBank.OnStateChanged += this.OnMoneyChanged;
+            _moneyStorage.OnStateChanged += this.OnMoneyChanged;
         }
 
         public void Dispose()
         {
-            _currencyBank.OnStateChanged -= this.OnMoneyChanged;
+            _moneyStorage.OnStateChanged -= this.OnMoneyChanged;
+        }
+
+        public void OnBuyClick()
+        {
+            _productBuyer.Buy(_product);
         }
 
         private void OnMoneyChanged()
@@ -53,38 +81,5 @@ namespace SampleGame
         {
             return _product != null && _productBuyer.CanBuy(_product);
         }
-
-        public void OnBuyClick()
-        {
-            _productBuyer.Buy(_product);
-        }
-        
-        //
-        //     this.
-
-        //
-        //
-        //
-        // private void OnMoneyChanged(int _)
-        // {
-        //     this.buyButton.interactable = this.productBuyer.CanBuy(product);
-        // }
-        //
-        // this.title.text = _presenter.Title;
-        // this.description.text = product.description;
-        // this.icon.sprite = product.icon;
-        // this.price.text = product.price.ToString();
-        //     
-        // this.buyButton.interactable = this.productBuyer.CanBuy(product);
-        // this.buyButton.onClick.AddListener(this.OnBuyClicked);
-        //
-        //
-        // private void OnBuyClicked()
-        // {
-        //     this.productBuyer.Buy(product);
-        // }
-
-
-      
     }
 }

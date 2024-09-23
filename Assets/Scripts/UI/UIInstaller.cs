@@ -7,6 +7,9 @@ namespace SampleGame
     {
         [SerializeField]
         private CurrencyListView currencyListView;
+
+        [SerializeField]
+        private Product initialProduct;
         
         public override void InstallBindings()
         {
@@ -14,6 +17,12 @@ namespace SampleGame
                 .BindInterfacesAndSelfTo<CurrencyBankPresenter>()
                 .AsCached()
                 .WithArguments(this.currencyListView)
+                .NonLazy();
+            
+            this.Container
+                .BindInterfacesAndSelfTo<ProductPresenter>()
+                .AsSingle()
+                .WithArguments(this.initialProduct)
                 .NonLazy();
         }
     }
