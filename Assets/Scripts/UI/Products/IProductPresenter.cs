@@ -5,6 +5,7 @@ namespace SampleGame
 {
     public interface IProductPresenter
     {
+        event Action OnStateChanged;
         event Action<bool> OnBuyButtonInteractible;
         
         string Title { get; }

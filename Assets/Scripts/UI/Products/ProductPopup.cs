@@ -33,16 +33,12 @@ namespace SampleGame
         [Sirenix.OdinInspector.Button]
         public void Show()
         {
-            this.title.text = _presenter.Title;
-            this.description.text = _presenter.Description;
-            this.icon.sprite = _presenter.Icon;
-            this.price.text = _presenter.Price;
-            
-            this.buyButton.interactable = _presenter.IsBuyButtonInteractible;
-            this.buyButton.onClick.AddListener(_presenter.OnBuyClick);
+            this.OnStateChanged();
 
+            _presenter.OnStateChanged += this.OnStateChanged;
             _presenter.OnBuyButtonInteractible += this.OnBuyButtonInteractible;
 
+            this.buyButton.onClick.AddListener(_presenter.OnBuyClick);
             this.gameObject.SetActive(true);
         }
 
@@ -50,9 +46,19 @@ namespace SampleGame
         public void Hide()
         {
             _presenter.OnBuyButtonInteractible -= this.OnBuyButtonInteractible;
+            _presenter.OnStateChanged -= this.OnStateChanged;
 
             this.buyButton.onClick.RemoveListener(_presenter.OnBuyClick);
             this.gameObject.SetActive(false);
+        }
+        
+        private void OnStateChanged()
+        {
+            this.title.text = _presenter.Title;
+            this.description.text = _presenter.Description;
+            this.icon.sprite = _presenter.Icon;
+            this.price.text = _presenter.Price;
+            this.buyButton.interactable = _presenter.IsBuyButtonInteractible;
         }
 
         private void OnBuyButtonInteractible(bool interactible)
