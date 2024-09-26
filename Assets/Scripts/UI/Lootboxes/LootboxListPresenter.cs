@@ -8,22 +8,19 @@ namespace SampleGame
     {
         private readonly Lootbox[] _lootboxes;
         private readonly LootboxListView _listView;
-        private readonly LootboxConsumer _lootboxConsumer;
-        private readonly CurrencyBank _currencyBank;
+        private readonly LootboxPresenter.Factory _factory;
 
         private readonly List<LootboxPresenter> _presenters = new();
 
         public LootboxListPresenter(
             Lootbox[] lootboxes,
             LootboxListView listView,
-            LootboxConsumer consumer,
-            CurrencyBank currencyBank
+            LootboxPresenter.Factory factory
         )
         {
             _lootboxes = lootboxes;
             _listView = listView;
-            _lootboxConsumer = consumer;
-            _currencyBank = currencyBank;
+            _factory = factory;
         }
 
         public void Initialize()
@@ -32,9 +29,9 @@ namespace SampleGame
             {
                 Lootbox lootbox = _lootboxes[i];
                 LootboxView view = _listView.SpawnElement();
-                LootboxPresenter presenter = new LootboxPresenter(lootbox, view, _lootboxConsumer, _currencyBank);
+                LootboxPresenter presenter = _factory.Create(lootbox, view);
                 presenter.Initialize();
-                
+
                 _presenters.Add(presenter);
             }
         }
@@ -46,7 +43,7 @@ namespace SampleGame
                 LootboxPresenter presenter = _presenters[i];
                 presenter.Dispose();
             }
-            
+
             _listView.Clear();
         }
     }

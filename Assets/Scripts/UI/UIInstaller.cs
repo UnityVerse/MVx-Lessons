@@ -25,6 +25,12 @@ namespace SampleGame
                 .WithArguments(this.lootboxListView)
                 .NonLazy();
 
+            this.Container
+                .BindFactory<Lootbox, LootboxView, LootboxPresenter, LootboxPresenter.Factory>()
+                .AsSingle()
+                .NonLazy();
+
+
             // this.Container
             //     .BindInterfacesTo<LootboxPresenter>()
             //     .AsSingle()

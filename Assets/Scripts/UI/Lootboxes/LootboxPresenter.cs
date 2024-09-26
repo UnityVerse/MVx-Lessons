@@ -29,16 +29,16 @@ namespace SampleGame
             this.UpdatePrice();
             this.UpdateRemainingTime(_lootbox.RemainingTime);
             
-            _lootbox.OnTimerTicked += this.OnTimerTicked;
-            _lootbox.OnReady += this.OnReady;
+            _lootbox.OnTickTimer += this.UpdateRemainingTime;
+            _lootbox.OnReady += this.UpdateReadyState;
 
             _view.OnCollectClicked += this.OnCollectClicked;
         }
 
         public void Dispose()
         {
-            _lootbox.OnTimerTicked -= this.OnTimerTicked;
-            _lootbox.OnReady -= this.OnReady;
+            _lootbox.OnTickTimer -= this.UpdateRemainingTime;
+            _lootbox.OnReady -= this.UpdateReadyState;
         }
 
         private void UpdatePrice()
@@ -59,12 +59,7 @@ namespace SampleGame
             _view.SetRemainingTime($"{timeSpan.Minutes}m:{timeSpan.Seconds}s");
         }
 
-        private void OnTimerTicked(Lootbox lootbox, float remainingTime)
-        {
-            this.UpdateRemainingTime(remainingTime);
-        }
-
-        private void OnReady(Lootbox _, bool ready)
+        private void UpdateReadyState(bool ready)
         {
             _view.SetReady(ready);
         }
@@ -72,6 +67,10 @@ namespace SampleGame
         private void OnCollectClicked()
         {
             _lootboxConsumer.Consume(_lootbox);
+        }
+        
+        public sealed class Factory : PlaceholderFactory<Lootbox, LootboxView, LootboxPresenter>
+        {
         }
     }
 }

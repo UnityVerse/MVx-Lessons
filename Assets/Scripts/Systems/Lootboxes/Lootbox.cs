@@ -9,13 +9,11 @@ namespace SampleGame
     [Serializable]
     public sealed class Lootbox : IFixedTickable
     {
-        public event Action<Lootbox, bool> OnReady;
-        public event Action<Lootbox, float> OnTimerTicked;
+        public event Action<bool> OnReady;
+        public event Action<float> OnTickTimer;
 
         public bool IsReady => this.isReady;
         public float RemainingTime => this.remainingTime;
-        public float Duration => this.duration;
-        public float Progress => 1 - this.remainingTime / this.duration;
         public IReadOnlyList<CurrencyData> CurrencyReward => this.currencyReward;
 
         public Sprite Icon => this.icon;
@@ -45,7 +43,7 @@ namespace SampleGame
 
             this.isReady = false;
             this.remainingTime = this.duration;
-            this.OnReady?.Invoke(this, false);
+            this.OnReady?.Invoke(false);
             return true;
         }
 
@@ -57,7 +55,7 @@ namespace SampleGame
             }
 
             this.remainingTime = Mathf.Max(0, this.remainingTime - Time.fixedDeltaTime);
-            this.OnTimerTicked?.Invoke(this, this.remainingTime);
+            this.OnTickTimer?.Invoke(this.remainingTime);
 
             if (this.remainingTime <= 0)
             {
@@ -68,7 +66,7 @@ namespace SampleGame
         private void SetReady()
         {
             this.isReady = true;
-            this.OnReady?.Invoke(this, true);
+            this.OnReady?.Invoke(true);
         }
     }
 }

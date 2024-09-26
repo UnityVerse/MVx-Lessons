@@ -11,11 +11,6 @@ namespace SampleGame
         {
             _currencyBank = currencyBank;
         }
-
-        public bool CanConsume(Lootbox lootbox)
-        {
-            return lootbox.IsReady;
-        }
         
         public bool Consume(Lootbox lootbox)
         {
