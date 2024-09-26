@@ -14,7 +14,7 @@ namespace SampleGame
         private readonly List<T> items = new();
         private readonly Queue<T> freeList = new();
 
-        public T SpawnItem()
+        public T SpawnElement()
         {
             if (this.freeList.TryDequeue(out var item))
             {
@@ -29,7 +29,7 @@ namespace SampleGame
             return item;
         }
 
-        public void UnspawnItem(T item)
+        public void DespawnElement(T item)
         {
             if (item != null && this.items.Remove(item))
             {

@@ -12,18 +12,6 @@ namespace SampleGame
 
         [Inject]
         [ShowInInspector, HideInEditorMode]
-        private ProductBuyer productBuyer;
-        
-        [Inject]
-        [ShowInInspector, HideInEditorMode]
-        private ProductPresenter presenter;
-        
-        [Inject]
-        [ShowInInspector, HideInEditorMode]
-        private ProductShower productShower;
-        
-        [Inject]
-        [ShowInInspector, HideInEditorMode]
-        private LootboxManager lootboxManager;
+        private LootboxConsumer lootboxConsumer;
     }
 }

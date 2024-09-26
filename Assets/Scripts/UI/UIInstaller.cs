@@ -9,32 +9,41 @@ namespace SampleGame
         private CurrencyListView currencyListView;
 
         [SerializeField]
-        private Product initialProduct;
-
-        [SerializeField]
-        private ProductPopup productPopup;
+        private LootboxView lootboxView;
 
         public override void InstallBindings()
         {
-            this.Container
-                .Bind<ProductPopup>()
-                .FromInstance(this.productPopup)
-                .AsSingle()
-                .NonLazy();
-            
             this.Container
                 .BindInterfacesAndSelfTo<CurrencyBankPresenter>()
                 .AsCached()
                 .WithArguments(this.currencyListView)
                 .NonLazy();
-
-            this.Container.Bind<ProductShower>().AsSingle();
-
+            
             this.Container
-                .BindInterfacesAndSelfTo<ProductPresenter>()
+                .BindInterfacesTo<LootboxPresenter>()
                 .AsSingle()
-                .WithArguments(this.initialProduct)
+                .WithArguments(this.lootboxView)
                 .NonLazy();
         }
     }
 }
+
+// [SerializeField]
+// private Product initialProduct;
+//
+// [SerializeField]
+// private ProductPopup productPopup;
+
+// this.Container
+//     .Bind<ProductPopup>()
+//     .FromInstance(this.productPopup)
+//     .AsSingle()
+//     .NonLazy();
+//
+// this.Container.Bind<ProductShower>().AsSingle();
+//
+// this.Container
+//     .BindInterfacesAndSelfTo<ProductPresenter>()
+//     .AsSingle()
+//     .WithArguments(this.initialProduct)
+//     .NonLazy();

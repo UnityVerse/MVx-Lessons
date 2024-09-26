@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 2235349906407654144}
   - component: {fileID: 2076415072162464353}
   m_Layer: 5
-  m_Name: PriceView
+  m_Name: PriceView (Medium)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

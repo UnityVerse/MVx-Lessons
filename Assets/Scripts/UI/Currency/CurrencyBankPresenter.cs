@@ -21,7 +21,7 @@ namespace SampleGame
         {
             foreach (CurrencyCell cell in this.bank)
             {
-                CurrencyView cellView = this.listView.SpawnItem();
+                CurrencyView cellView = this.listView.SpawnElement();
                 CurrencyCellPresenter itemPresenter = new CurrencyCellPresenter(cell, cellView);
                 this.presenters.Add(itemPresenter);
             }
@@ -32,7 +32,7 @@ namespace SampleGame
             foreach (CurrencyCellPresenter presenter in this.presenters)
             {
                 presenter.Dispose();
-                this.listView.UnspawnItem(presenter.View);
+                this.listView.DespawnElement(presenter.View);
             }
         }
     }

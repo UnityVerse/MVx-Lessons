@@ -74,7 +74,7 @@ namespace SampleGame
                 string price = presenter.Price;
                 Sprite icon = presenter.Icon;
 
-                PriceView view = this.priceListView.SpawnItem();
+                PriceView view = this.priceListView.SpawnElement();
                 view.SetAmount(price);
                 view.SetIcon(icon);
             }

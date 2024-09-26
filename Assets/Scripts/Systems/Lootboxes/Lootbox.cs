@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace SampleGame
 {
     [Serializable]
-    public sealed class Lootbox
+    public sealed class Lootbox : IFixedTickable
     {
-        public event Action<Lootbox> OnConsumed;
-        public event Action<Lootbox> OnReady;
-        public event Action<Lootbox> OnTimerTicked;
+        public event Action<Lootbox, bool> OnReady;
+        public event Action<Lootbox, float> OnTimerTicked;
 
         public bool IsReady => this.isReady;
         public float RemainingTime => this.remainingTime;
@@ -18,7 +18,6 @@ namespace SampleGame
         public float Progress => 1 - this.remainingTime / this.duration;
         public IReadOnlyList<CurrencyData> CurrencyReward => this.currencyReward;
 
-        public string Title => this.title;
         public Sprite Icon => this.icon;
 
         [SerializeField]
@@ -34,33 +33,8 @@ namespace SampleGame
         private CurrencyData[] currencyReward;
 
         [Header("Meta")]
-        [SerializeField]
-        private string title;
-
         [SerializeField, PreviewField]
         private Sprite icon;
-
-        public void TickTimer(float deltaTime)
-        {
-            if (this.isReady)
-            {
-                return;
-            }
-
-            this.remainingTime = Mathf.Max(0, this.remainingTime - deltaTime);
-            this.OnTimerTicked?.Invoke(this);
-
-            if (this.remainingTime <= 0)
-            {
-                this.SetReady();
-            }
-        }
-
-        private void SetReady()
-        {
-            this.isReady = true;
-            this.OnReady?.Invoke(this);
-        }
 
         public bool Consume()
         {
@@ -71,8 +45,30 @@ namespace SampleGame
 
             this.isReady = false;
             this.remainingTime = this.duration;
-            this.OnConsumed?.Invoke(this);
+            this.OnReady?.Invoke(this, false);
             return true;
+        }
+
+        void IFixedTickable.FixedTick()
+        {
+            if (this.isReady)
+            {
+                return;
+            }
+
+            this.remainingTime = Mathf.Max(0, this.remainingTime - Time.fixedDeltaTime);
+            this.OnTimerTicked?.Invoke(this, this.remainingTime);
+
+            if (this.remainingTime <= 0)
+            {
+                this.SetReady();
+            }
+        }
+
+        private void SetReady()
+        {
+            this.isReady = true;
+            this.OnReady?.Invoke(this, true);
         }
     }
 }
