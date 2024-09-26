@@ -9,7 +9,7 @@ namespace SampleGame
         private CurrencyListView currencyListView;
 
         [SerializeField]
-        private LootboxView lootboxView;
+        private LootboxListView lootboxListView;
 
         public override void InstallBindings()
         {
@@ -18,12 +18,18 @@ namespace SampleGame
                 .AsCached()
                 .WithArguments(this.currencyListView)
                 .NonLazy();
-            
+
             this.Container
-                .BindInterfacesTo<LootboxPresenter>()
+                .BindInterfacesTo<LootboxListPresenter>()
                 .AsSingle()
-                .WithArguments(this.lootboxView)
+                .WithArguments(this.lootboxListView)
                 .NonLazy();
+
+            // this.Container
+            //     .BindInterfacesTo<LootboxPresenter>()
+            //     .AsSingle()
+            //     .WithArguments(this.lootboxView)
+            //     .NonLazy();
         }
     }
 }

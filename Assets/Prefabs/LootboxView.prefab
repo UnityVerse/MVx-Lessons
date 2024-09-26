@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 1346350627056908417}
   - component: {fileID: 3062928139272692360}
   - component: {fileID: 8953671804662169936}
+  - component: {fileID: 8888045367376697549}
   m_Layer: 5
   m_Name: Price
   m_TagString: Untagged
@@ -369,6 +370,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8888045367376697549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753989658290132667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4c4e3a89254d6cb60ec1e0145a1e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 2542521280529144089, guid: 2026d62624f17448dac2a96d77b5acdf, type: 3}
+  container: {fileID: 5995019550301073147}
 --- !u!1 &5858187460976950512
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +397,7 @@ GameObject:
   - component: {fileID: 4106427109687028392}
   - component: {fileID: 5318007199816828004}
   - component: {fileID: 85266816214094587}
+  - component: {fileID: 7826632291355507699}
   m_Layer: 5
   m_Name: LootboxView
   m_TagString: Untagged
@@ -491,6 +507,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 0
+--- !u!114 &7826632291355507699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5858187460976950512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549b45de3c2d4ad98ab52218730ec9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 6481850170253952337}
+  remainingTime: {fileID: 1609707097967641419}
+  timerView: {fileID: 8222850630857403558}
+  collectButton: {fileID: 2958410730856782724}
+  priceElements: {fileID: 8888045367376697549}
 --- !u!1 &5979235980187928420
 GameObject:
   m_ObjectHideFlags: 0

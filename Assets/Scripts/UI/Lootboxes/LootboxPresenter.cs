@@ -10,6 +10,9 @@ namespace SampleGame
         private readonly CurrencyBank _currencyBank;
         private readonly LootboxConsumer _lootboxConsumer;
 
+        public LootboxView View => _view;
+        public Lootbox Model => _lootbox;
+
         public LootboxPresenter(Lootbox lootbox, LootboxView view, LootboxConsumer lootboxConsumer, CurrencyBank currencyBank)
         {
             _lootbox = lootbox;
