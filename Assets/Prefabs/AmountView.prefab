@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4633354011657623584}
   - component: {fileID: 2542521280529144089}
   m_Layer: 5
-  m_Name: PriceView (Small)
+  m_Name: AmountView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
