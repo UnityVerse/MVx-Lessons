@@ -384,25 +384,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4391699250519744178, guid: b1df0ae2d2cef4f56a1db8ea4106b96f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4391699250519744178, guid: b1df0ae2d2cef4f56a1db8ea4106b96f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4391699250519744178, guid: b1df0ae2d2cef4f56a1db8ea4106b96f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 462.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4391699250519744178, guid: b1df0ae2d2cef4f56a1db8ea4106b96f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5858187460976950512, guid: b1df0ae2d2cef4f56a1db8ea4106b96f, type: 3}
       propertyPath: m_Name
       value: LootboxView
       objectReference: {fileID: 0}
     - target: {fileID: 5858187460976950512, guid: b1df0ae2d2cef4f56a1db8ea4106b96f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979235980187928420, guid: b1df0ae2d2cef4f56a1db8ea4106b96f, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -524,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8222850630857403558, guid: b1df0ae2d2cef4f56a1db8ea4106b96f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

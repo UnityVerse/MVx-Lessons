@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace SampleGame
 {
-    public sealed class PriceView : MonoBehaviour
+    public sealed class AmountView : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text amount;

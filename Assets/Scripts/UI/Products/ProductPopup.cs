@@ -23,7 +23,7 @@ namespace SampleGame
         private Button buyButton;
 
         [SerializeField]
-        private PriceListView priceListView;
+        private AmountListView amountListView;
         
         private IProductPresenter _presenter;
 
@@ -66,7 +66,7 @@ namespace SampleGame
 
         private void UpdatePrice()
         {
-            this.priceListView.Clear();
+            this.amountListView.Clear();
             
             IReadOnlyList<IPriceElement> priceElements = _presenter.PriceElements;
             foreach (var presenter in priceElements)
@@ -74,7 +74,7 @@ namespace SampleGame
                 string price = presenter.Price;
                 Sprite icon = presenter.Icon;
 
-                PriceView view = this.priceListView.SpawnElement();
+                AmountView view = this.amountListView.SpawnElement();
                 view.SetAmount(price);
                 view.SetIcon(icon);
             }
