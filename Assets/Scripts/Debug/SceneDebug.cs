@@ -11,7 +11,16 @@ namespace SampleGame
         private CurrencyBank currencyBank;
 
         [Inject]
-        [ShowInInspector, HideInEditorMode]
+        private Lootbox lootbox;
+
+        
+        [Inject]
         private LootboxConsumer lootboxConsumer;
+
+        [Button]
+        private void ConsumeLootbox()
+        {
+            this.lootboxConsumer.Consume(this.lootbox);
+        }
     }
 }

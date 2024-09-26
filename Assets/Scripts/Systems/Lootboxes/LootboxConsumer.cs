@@ -1,10 +1,7 @@
-using Sirenix.OdinInspector;
-
 namespace SampleGame
 {
     public sealed class LootboxConsumer
     {
-        [ShowInInspector, ReadOnly]
         private readonly CurrencyBank _currencyBank;
 
         public LootboxConsumer(CurrencyBank currencyBank)

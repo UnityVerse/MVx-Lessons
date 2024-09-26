@@ -10,12 +10,11 @@ namespace SampleGame
     public sealed class Lootbox : IFixedTickable
     {
         public event Action<bool> OnReady;
-        public event Action<float> OnTickTimer;
+        public event Action<float> OnTimeChanged;
 
         public bool IsReady => this.isReady;
         public float RemainingTime => this.remainingTime;
         public IReadOnlyList<CurrencyData> CurrencyReward => this.currencyReward;
-
         public Sprite Icon => this.icon;
 
         [SerializeField]
@@ -55,7 +54,7 @@ namespace SampleGame
             }
 
             this.remainingTime = Mathf.Max(0, this.remainingTime - Time.fixedDeltaTime);
-            this.OnTickTimer?.Invoke(this.remainingTime);
+            this.OnTimeChanged?.Invoke(this.remainingTime);
 
             if (this.remainingTime <= 0)
             {
