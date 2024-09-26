@@ -9,7 +9,7 @@ namespace SampleGame
         private CurrencyCell[] cells;
 
         [SerializeField]
-        private Lootbox lootbox;
+        private Lootbox[] lootbox;
 
         public override void InstallBindings()
         {
@@ -20,9 +20,9 @@ namespace SampleGame
                 .NonLazy();
 
             this.Container
-                .BindInterfacesAndSelfTo<Lootbox>()
-                .FromInstance(lootbox)
+                .BindInterfacesAndSelfTo<LootboxService>()
                 .AsSingle()
+                .WithArguments(this.lootbox)
                 .NonLazy();
 
             this.Container

@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Zenject;
 
 namespace SampleGame
 {
     [Serializable]
-    public sealed class Lootbox : IFixedTickable
+    public sealed class Lootbox
     {
         public event Action<bool> OnReady;
         public event Action<float> OnTimeChanged;
@@ -46,14 +45,15 @@ namespace SampleGame
             return true;
         }
 
-        void IFixedTickable.FixedTick()
+
+        public void Tick(float deltaTime)
         {
             if (this.isReady)
             {
                 return;
             }
 
-            this.remainingTime = Mathf.Max(0, this.remainingTime - Time.fixedDeltaTime);
+            this.remainingTime = Mathf.Max(0, this.remainingTime - deltaTime);
             this.OnTimeChanged?.Invoke(this.remainingTime);
 
             if (this.remainingTime <= 0)
