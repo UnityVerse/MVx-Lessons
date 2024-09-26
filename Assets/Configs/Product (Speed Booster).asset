@@ -18,3 +18,5 @@ MonoBehaviour:
   price:
   - type: 0
     amount: 125
+  - type: 0
+    amount: 125

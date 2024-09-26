@@ -39,6 +39,15 @@ namespace SampleGame
             return true;
         }
 
+        public void Add(IEnumerable<CurrencyData> range)
+        {
+            foreach (CurrencyData currency in range)
+            {
+                CurrencyCell cell = _cells[currency.type];
+                cell.Add(currency.amount);
+            }
+        }
+
         public bool Spend(IEnumerable<CurrencyData> range)
         {
             if (!this.IsEnough(range))

@@ -366,6 +366,17 @@ MonoBehaviour:
   - _icon: {fileID: 21300000, guid: d29138e8659754a718ff048d6aa8572c, type: 3}
     _type: 3
     _amount: 500
+  lootboxes:
+  - remainingTime: 300
+    duration: 300
+    isReady: 0
+    currencyReward:
+    - type: 0
+      amount: 200
+    - type: 1
+      amount: 50
+    title: Bronze
+    icon: {fileID: 0}
 --- !u!1 &870947784
 GameObject:
   m_ObjectHideFlags: 0

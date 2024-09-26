@@ -8,6 +8,9 @@ namespace SampleGame
         [SerializeField]
         private CurrencyCell[] cells;
 
+        [SerializeField]
+        private Lootbox[] lootboxes;
+
         public override void InstallBindings()
         {
             this.Container
@@ -17,6 +20,12 @@ namespace SampleGame
                 .NonLazy();
             
             this.Container.Bind<ProductBuyer>().AsSingle();
+
+            this.Container
+                .BindInterfacesAndSelfTo<LootboxManager>()
+                .AsSingle()
+                .WithArguments(this.lootboxes)
+                .NonLazy();
         }
     }
 }

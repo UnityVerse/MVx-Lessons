@@ -21,5 +21,9 @@ namespace SampleGame
         [Inject]
         [ShowInInspector, HideInEditorMode]
         private ProductShower productShower;
+        
+        [Inject]
+        [ShowInInspector, HideInEditorMode]
+        private LootboxManager lootboxManager;
     }
 }
