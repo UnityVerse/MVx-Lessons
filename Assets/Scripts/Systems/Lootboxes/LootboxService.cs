@@ -6,7 +6,7 @@ using Zenject;
 
 namespace SampleGame
 {
-    public sealed class LootboxService : ILootboxService, IFixedTickable
+    public sealed class LootboxService : ILootboxService
     {
         public event Action<Lootbox> OnLootboxAdded;
         public event Action<Lootbox> OnLootboxRemoved;
@@ -15,10 +15,17 @@ namespace SampleGame
         public IReadOnlyList<Lootbox> Lootboxes => this.lootboxes;
 
         private readonly List<Lootbox> lootboxes;
+        private readonly TickableManager _tickableManager;
 
-        public LootboxService(IEnumerable<Lootbox> lootboxes)
+        public LootboxService(IEnumerable<Lootbox> lootboxes, TickableManager tickableManager)
         {
             this.lootboxes = new List<Lootbox>(lootboxes);
+            _tickableManager = tickableManager;
+
+            foreach (var lootbox in this.lootboxes)
+            {
+                _tickableManager.AddFixed(lootbox);
+            }
         }
 
         [Button]
@@ -27,6 +34,7 @@ namespace SampleGame
             if (!this.lootboxes.Contains(lootbox))
             {
                 this.lootboxes.Add(lootbox);
+                _tickableManager.AddFixed(lootbox);
                 this.OnLootboxAdded?.Invoke(lootbox);
             }
         }
@@ -44,16 +52,8 @@ namespace SampleGame
         {
             if (this.lootboxes.Remove(lootbox))
             {
+                _tickableManager.RemoveFixed(lootbox);
                 this.OnLootboxRemoved?.Invoke(lootbox);
-            }
-        }
-
-        void IFixedTickable.FixedTick()
-        {
-            float deltaTime = Time.fixedDeltaTime;
-            for (int i = 0, count = this.lootboxes.Count; i < count; i++)
-            {
-                this.lootboxes[i].Tick(deltaTime);
             }
         }
     }

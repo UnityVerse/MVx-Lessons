@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace SampleGame
 {
     [Serializable]
-    public sealed class Lootbox
+    public sealed class Lootbox : IFixedTickable
     {
         public event Action<bool> OnReady;
         public event Action<float> OnTimeChanged;
@@ -45,6 +46,11 @@ namespace SampleGame
             return true;
         }
 
+        void IFixedTickable.FixedTick()
+        {
+            Debug.Log("Zenject Fixed Tick");
+            this.Tick(Time.fixedDeltaTime);
+        }
 
         public void Tick(float deltaTime)
         {
